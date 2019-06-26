@@ -4,8 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
-const exoplanetsRouter = require('./routes/exoplanets');
+const indexRouter = require('./src/routes/index');
+const exoplanetsRouter = require('./src/routes/exoplanets');
 
 const app = express();
 
