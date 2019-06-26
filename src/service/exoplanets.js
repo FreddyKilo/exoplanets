@@ -1,7 +1,5 @@
 const _ = require("lodash");
 
-const planetTimeline = [];
-
 /**
  *
  * @param planetData
@@ -57,21 +55,26 @@ function getPlanetWithHottestStar(planetData) {
  * @param planetData
  */
 function getPlanetTimeline(planetData) {
-    buildTimeline(planetData);
+    const planetTimeline = buildTimeline(planetData);
     return _.orderBy(planetTimeline, ['yearDiscovered'], ['asc']);
 }
 
 function buildTimeline(planetData) {
+    const timeLine = [];
     _.forEach(planetData, function (planet) {
-        if (!planetTimeline.some(group => group.yearDiscovered === planet.DiscoveryYear)) {
-            addGroup(planet);
+        if (!timeLine.some(group => group.yearDiscovered === planet.DiscoveryYear)) {
+            addGroup(planet, timeLine);
         }
-        addSize(planet)
+        addSize(planet, timeLine);
+        if (timeLine.length % 100 === 0) {
+            console.log('stop');
+        }
     });
+    return timeLine;
 }
 
-function addGroup(planet) {
-    planetTimeline.push({
+function addGroup(planet, timeLine) {
+    timeLine.push({
         yearDiscovered: planet.DiscoveryYear,
         small: 0,
         medium: 0,
@@ -79,9 +82,9 @@ function addGroup(planet) {
     })
 }
 
-function addSize(planet) {
+function addSize(planet, timeLine) {
     const planetSize = getPlanetSize(planet);
-    _.find(planetTimeline, function (group) {
+    _.find(timeLine, function (group) {
         return group.yearDiscovered === planet.DiscoveryYear;
     })[planetSize]++;
 }
