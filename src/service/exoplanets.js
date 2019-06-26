@@ -2,10 +2,6 @@ const _ = require("lodash");
 
 const planetTimeline = [];
 
-function getMockData() {
-    return {'testPlanetName': 'korg161'};
-}
-
 /**
  *
  * @param planetData
@@ -97,10 +93,9 @@ function getPlanetSize(planet) {
 }
 
 module.exports = {
-    getMockData,
     getFilteredExoplanetData,
     getOrphanPlanetCount,
     getPlanetWithHottestStar,
     getPlanetSize,
-    buildTimeline
+    getPlanetTimeline
 };
