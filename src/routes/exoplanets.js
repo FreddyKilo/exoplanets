@@ -12,7 +12,9 @@ router.get('/', function (req, res) {
             res.json(exoplanetsService.getFilteredExoplanetData(body));
         })
         .catch(function (err) {
-            res.send(err, err.statusCode)
+            res.status(err.statusCode || 500)
+                .json({message: "Internal call to exoplanets failed"})
+                .end();
         });
 
 });
