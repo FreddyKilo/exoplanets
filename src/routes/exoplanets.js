@@ -7,8 +7,8 @@ const exoplanetsUrl = 'https://gist.githubusercontent.com/joelbirchler/66cf8045f
 /* GET filtered catalogue of discovered exoplanets. */
 router.get('/', function (req, res) {
     request.get(exoplanetsUrl)
-        .then(function (res) {
-            const body = JSON.parse(res);
+        .then(function (responseBody) {
+            const body = JSON.parse(responseBody);
             res.json(exoplanetsService.getFilteredExoplanetData(body));
         })
         .catch(function (err) {

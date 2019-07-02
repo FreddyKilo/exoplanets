@@ -1,7 +1,14 @@
 # exoplanets
 A program that downloads and displays a catalog of exoplanet data
 
-To start API server, run `npm start` from project root directory
+To start API server
+* Run `npm start` from project root directory
+
+    OR
+    
+* Run as a Docker container, i.e. `docker run -p <local port>:8000 -d exoplanets`
+
+To run unit tests, run `npm test` from project root directory
 
 * **URL**
     
@@ -26,20 +33,9 @@ To start API server, run `npm start` from project root directory
     
 * **Error Response:**
 
-    * **Code:** 404 NOT FOUND 
-    * **Content:** { error : "User doesn't exist" }
+    * **Code:** 500 
+    * **Content:** { message: "Internal call to exoplanets failed" }
     
-    OR
-
-    * **Code:** 401 UNAUTHORIZED 
-    * **Content:** { error : "You are unauthorized to make this request." }
-    * **Sample Call:**
+* **Sample Call:**
     
-          $.ajax({
-            url: "/users/1",
-            dataType: "json",
-            type : "GET",
-            success : function(r) {
-              console.log(r);
-            }
-          });
+          GET localhost:8000/exoplanets
